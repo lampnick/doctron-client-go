@@ -34,15 +34,16 @@ func (r *HTML2ImageRequestDTO) NeedDoctronUpload() bool {
 //HTML2ImageRequestDTO HTML2ImageRequestDTO
 type HTML2ImageRequestDTO struct {
 	CommonRequestDTO
-	Format      string  `url:"format" validate:"omitempty"`      // Image compression format (defaults to png).
-	Quality     int64   `url:"quality" validate:"omitempty"`     // Compression quality from range [0..100] (jpeg only).
-	CustomClip  bool    `url:"customClip" validate:"omitempty"`  //if set this value, the below clip will work,otherwise not work!
-	ClipX       float64 `url:"clipX" validate:"omitempty"`       // Capture the screenshot of a given region only.X offset in device independent pixels (dip).
-	ClipY       float64 `url:"clipY" validate:"omitempty"`       // Capture the screenshot of a given region only.Y offset in device independent pixels (dip).
-	ClipWidth   float64 `url:"clipWidth" validate:"omitempty"`   // Capture the screenshot of a given region only.Rectangle width in device independent pixels (dip).
-	ClipHeight  float64 `url:"clipHeight" validate:"omitempty"`  // Capture the screenshot of a given region only.Rectangle height in device independent pixels (dip).
-	ClipScale   float64 `url:"clipScale" validate:"omitempty"`   // Capture the screenshot of a given region only.Page scale factor.
-	FromSurface bool    `url:"fromSurface" validate:"omitempty"` // Capture the screenshot from the surface, rather than the view. Defaults to true.
+	Format      string  `url:"format" validate:"omitempty"`                   // Image compression format (defaults to png).
+	Quality     int64   `url:"quality" validate:"omitempty"`                  // Compression quality from range [0..100] (jpeg only).
+	CustomClip  bool    `url:"customClip" validate:"omitempty"`               //if set this value, the below clip will work,otherwise not work!
+	ClipX       float64 `url:"clipX" validate:"omitempty"`                    // Capture the screenshot of a given region only.X offset in device independent pixels (dip).
+	ClipY       float64 `url:"clipY" validate:"omitempty"`                    // Capture the screenshot of a given region only.Y offset in device independent pixels (dip).
+	ClipWidth   float64 `url:"clipWidth" validate:"omitempty"`                // Capture the screenshot of a given region only.Rectangle width in device independent pixels (dip).
+	ClipHeight  float64 `url:"clipHeight" validate:"omitempty"`               // Capture the screenshot of a given region only.Rectangle height in device independent pixels (dip).
+	ClipScale   float64 `url:"clipScale" validate:"omitempty"`                // Capture the screenshot of a given region only.Page scale factor.
+	FromSurface bool    `url:"fromSurface" validate:"omitempty"`              // Capture the screenshot from the surface, rather than the view. Defaults to true.
+	WaitingTime int     `schema:"waitingTime,omitempty" validate:"omitempty"` // Waiting time after the page loaded. Default 0 means not wait. unit:Millisecond
 }
 
 //NewDefaultHTML2ImageRequestDTO NewDefaultHTML2ImageRequestDTO
@@ -57,5 +58,6 @@ func NewDefaultHTML2ImageRequestDTO() *HTML2ImageRequestDTO {
 		ClipHeight:  DefaultViewportHeight,
 		ClipScale:   DefaultViewportScale,
 		FromSurface: DefaultFromSurface,
+		WaitingTime: DefaultWaitingTime,
 	}
 }

@@ -20,6 +20,7 @@ func TestHTML2Pdf(t *testing.T) {
 	client := NewClient(context.Background(), domain, defaultUsername, defaultPassword)
 	req := NewDefaultHTML2PdfRequestDTO()
 	req.ConvertURL = "http://doctron.lampnick.com/doctron.html"
+	req.WaitingTime = 1000
 	response, err := client.HTML2Pdf(req)
 	if err != nil {
 		t.Fatalf("HTML2Pdf err: %s", err.Error())
@@ -53,6 +54,7 @@ func TestHTML2Image(t *testing.T) {
 	}()
 	client := NewClient(context.Background(), domain, defaultUsername, defaultPassword)
 	req := NewDefaultHTML2ImageRequestDTO()
+	req.WaitingTime = 1000
 	req.ConvertURL = "http://doctron.lampnick.com/doctron.html"
 	response, err := client.HTML2Image(req)
 	if err != nil {
